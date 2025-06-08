@@ -50,12 +50,6 @@ const Dashboard: React.FC = () => {
             All
           </button>
           <button 
-            className={`filter-btn ${filter === 'pending' ? 'active' : ''}`}
-            onClick={() => setFilter('pending')}
-          >
-            Pending
-          </button>
-          <button 
             className={`filter-btn ${filter === 'accepted' ? 'active' : ''}`}
             onClick={() => setFilter('accepted')}
           >

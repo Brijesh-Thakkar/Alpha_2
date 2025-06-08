@@ -19,7 +19,7 @@ function App() {
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/CustomerPage" element={<CustomerPage />} />
           <Route path="/QR" element={<QR />} />
-          <Route path="/MessageAll" element={<MessageAll />} />
+          <Route path="/MessageAll" element={<MessageAll totalCustomers={1000} />} />
           <Route path="ProductMangementPage" element={<ProductManagementPage />} />
         </Routes>
       </Layout>

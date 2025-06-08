@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
-import { Edit, Trash2, User, Phone, MapPin } from 'lucide-react';
+import { Edit, Trash2, User, Phone } from 'lucide-react';
 import './CustomerPage.css';
 
 interface Customer {
   id: number;
   name: string;
   phone: string;
-  address: string;
 }
 
 const CustomerPage: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([
-    { id: 1, name: 'John Doe', phone: '1234567890', address: '123 Main St, City' },
-    { id: 2, name: 'Jane Smith', phone: '0987654321', address: '456 Oak Ave, Town' },
+    { id: 1, name: 'John Doe', phone: '1234567890' },
+    { id: 2, name: 'Jane Smith', phone: '0987654321' },
   ]);
 
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
-    address: ''
+    phone: ''
   });
 
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -33,8 +31,8 @@ const CustomerPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
+
+    if (!formData.name.trim() || !formData.phone.trim()) {
       alert('Please fill in all fields');
       return;
     }
@@ -57,14 +55,13 @@ const CustomerPage: React.FC = () => {
     }
 
     // Reset form
-    setFormData({ name: '', phone: '', address: '' });
+    setFormData({ name: '', phone: '' });
   };
 
   const handleEdit = (customer: Customer) => {
     setFormData({
       name: customer.name,
-      phone: customer.phone,
-      address: customer.address
+      phone: customer.phone
     });
     setEditingId(customer.id);
   };
@@ -76,7 +73,7 @@ const CustomerPage: React.FC = () => {
   };
 
   const handleCancel = () => {
-    setFormData({ name: '', phone: '', address: '' });
+    setFormData({ name: '', phone: '' });
     setEditingId(null);
   };
 
@@ -127,22 +124,6 @@ const CustomerPage: React.FC = () => {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="address" className="form-label">
-                <MapPin className="label-icon" />
-                ADDRESS
-              </label>
-              <textarea
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                className="form-textarea"
-                placeholder="Enter customer address"
-                rows={3}
-              />
-            </div>
-
             <div className="form-buttons">
               <button type="submit" className="btn-primary">
                 {editingId ? 'UPDATE' : 'ADD'}
@@ -181,10 +162,6 @@ const CustomerPage: React.FC = () => {
                     <div className="customer-phone">
                       <Phone className="customer-icon" />
                       {customer.phone}
-                    </div>
-                    <div className="customer-address">
-                      <MapPin className="customer-icon" />
-                      {customer.address}
                     </div>
                   </div>
                   <div className="customer-actions">

@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import './MessageAll.css';
 
-interface Message {
-  id: number;
-  content: string;
-  timestamp: Date;
-  customerCount: number;
-  status: 'sent';
+interface MessageAllProps {
+  totalCustomers?: number; // optional prop for total customers count
 }
 
-interface MessageAllProps {}
-
-const MessageAll: React.FC<MessageAllProps> = () => {
+const MessageAll: React.FC<MessageAllProps> = ({ totalCustomers = 0 }) => {
   const [message, setMessage] = useState<string>('');
-  const [showPastMessages, setShowPastMessages] = useState<boolean>(false);
-  const [pastMessages, setPastMessages] = useState<Message[]>([]);
-
-  const totalCustomers = 1247;
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
@@ -24,40 +14,13 @@ const MessageAll: React.FC<MessageAllProps> = () => {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      const timestamp = new Date();
-
-      const newMessage: Message = {
-        id: Date.now(),
-        content: message.trim(),
-        timestamp,
-        customerCount: totalCustomers,
-        status: 'sent',
-      };
-
-      setPastMessages((prev) => [newMessage, ...prev]);
       alert(`Message sent to all customers!`);
-
       setMessage('');
     }
   };
 
-  const handlePastMessageSelect = (pastMessage: Message) => {
-    setMessage(pastMessage.content);
-    setShowPastMessages(false);
-  };
-
   const getPreviewMessage = () => {
     return message || '';
-  };
-
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
   };
 
   return (
@@ -84,15 +47,6 @@ const MessageAll: React.FC<MessageAllProps> = () => {
                 </div>
                 <h2>COMPOSE MESSAGE</h2>
               </div>
-              <button
-                className="history-button"
-                onClick={() => setShowPastMessages(!showPastMessages)}
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
-                </svg>
-                Message History
-              </button>
             </div>
 
             <div className="message-form">
@@ -132,10 +86,7 @@ const MessageAll: React.FC<MessageAllProps> = () => {
                 <div className="message-header">
                   <div className="sender-info">
                     <div className="sender-avatar">📱</div>
-                    <div className="sender-details">
-                      <div className="sender-name">Shop's name</div>
-                      <div className="message-type">SMS Message</div>
-                    </div>
+                    {/* Removed sender-details block */}
                   </div>
                   <div className="message-time">Now</div>
                 </div>
@@ -154,39 +105,6 @@ const MessageAll: React.FC<MessageAllProps> = () => {
           </div>
         </div>
       </div>
-
-      {showPastMessages && (
-        <div className="modal-overlay" onClick={() => setShowPastMessages(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Message History</h3>
-              <button className="close-button" onClick={() => setShowPastMessages(false)}>
-                ×
-              </button>
-            </div>
-            <div className="past-messages-list">
-              {pastMessages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className="past-message-item"
-                  onClick={() => handlePastMessageSelect(msg)}
-                >
-                  <div className="past-message-content">
-                    <p>{msg.content}</p>
-                  </div>
-                  <div className="past-message-meta">
-                    <div className="message-stats">
-                      <span className="customer-count">👥 {msg.customerCount}</span>
-                      <span className="message-status">● {msg.status.toUpperCase()}</span>
-                    </div>
-                    <span className="message-date">{formatDate(msg.timestamp)}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
