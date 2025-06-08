@@ -4,14 +4,15 @@ export const generateId = (): string => {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 };
 
-export const createCategory = (name: string, description: string): Category => ({
+// Remove description argument and property from createCategory
+export const createCategory = (name: string): Category => ({
   id: generateId(),
   name,
-  description,
   createdAt: new Date(),
   updatedAt: new Date(),
 });
 
+// Products still have description, so keep as is
 export const createProduct = (categoryId: string, name: string, description: string, image: string): Product => ({
   id: generateId(),
   categoryId,
@@ -22,6 +23,7 @@ export const createProduct = (categoryId: string, name: string, description: str
   updatedAt: new Date(),
 });
 
+// updateCategory and updateProduct remain unchanged
 export const updateCategory = (category: Category, updates: Partial<Category>): Category => ({
   ...category,
   ...updates,

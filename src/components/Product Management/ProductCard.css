@@ -1,5 +1,7 @@
 .product-card {
   background: white;
+  max-width: 400px;
+  max-height: 400px;
   border-radius: 0.75rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -13,7 +15,8 @@
 }
 
 .product-card-image-container {
-  aspect-ratio: 1;
+  height: 180px;
+  width: 100%;
   background-color: #f3f4f6;
   position: relative;
   overflow: hidden;
@@ -102,4 +105,51 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
+  line-height: 1.5;       /* Add line height for better vertical spacing */
+  word-break: break-word; /* Prevent long words breaking layout */
+  letter-spacing: 0.02em; /* Slight horizontal spacing between letters */
+  padding-right: 0.2rem;  /* small right padding to avoid clipping */
 }
+
+.product-card-description.expanded {
+  display: block;
+  line-clamp: unset;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  line-height: 1.6;       /* Slightly bigger line height when expanded */
+  letter-spacing: 0.03em; /* slightly more spaced out */
+  padding-right: 0;       /* reset padding */
+  white-space: normal;    /* allow wrapping */
+}
+
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #2563eb; /* blue */
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 0.25rem;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+
+
+.product-card-price {
+  font-weight: bold;
+  color: #2e7d32; 
+  margin: 4px 0;
+}
+
+/* Flex container for title and price */
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+

@@ -22,6 +22,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     name: '',
     description: '',
     image: '',
+    price: 0,
   });
   const [preview, setPreview] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +33,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         name: product.name,
         description: product.description,
         image: product.image,
+        price: product.price,
       });
       setPreview(product.image);
     } else {
@@ -39,6 +41,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         name: '',
         description: '',
         image: '',
+        price: 0,
       });
       setPreview('');
     }
@@ -72,19 +75,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       <div className="product-modal">
         <div className="product-modal-header">
           <h2 className="product-modal-title">{title}</h2>
-          <button
-            onClick={onClose}
-            className="product-modal-close-btn"
-          >
+          <button onClick={onClose} className="product-modal-close-btn">
             <X />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="product-modal-form">
           <div className="product-modal-field">
-            <label className="product-modal-label">
-              Product Image
-            </label>
+            <label className="product-modal-label">Product Image</label>
             <div
               onClick={() => fileInputRef.current?.click()}
               className={`product-modal-upload-area ${preview ? 'has-image' : ''}`}
@@ -133,6 +131,23 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </div>
 
           <div className="product-modal-field">
+            <label htmlFor="price" className="product-modal-label">
+              Price *
+            </label>
+            <input
+              type="number"
+              id="price"
+              value={formData.price}
+              onChange={(e) =>
+                setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })
+              }
+              className="product-modal-input"
+              placeholder="Enter product price"
+              required
+            />
+          </div>
+
+          <div className="product-modal-field">
             <label htmlFor="description" className="product-modal-label">
               Description
             </label>
@@ -154,10 +169,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              className="product-modal-submit-btn"
-            >
+            <button type="submit" className="product-modal-submit-btn">
               {product ? 'Update' : 'Create'}
             </button>
           </div>

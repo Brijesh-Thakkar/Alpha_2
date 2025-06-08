@@ -3,11 +3,11 @@
   background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
 }
 
-.category-manager-container {
+/* .category-manager-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-}
+} */
 
 .category-manager-header {
   display: flex;
@@ -116,6 +116,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .category-manager-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 768px) {

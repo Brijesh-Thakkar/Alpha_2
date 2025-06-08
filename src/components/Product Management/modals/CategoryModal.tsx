@@ -20,19 +20,19 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<CategoryFormData>({
     name: '',
-    description: '',
+    // description: '',
   });
 
   useEffect(() => {
     if (category) {
       setFormData({
         name: category.name,
-        description: category.description,
+        // description: category.description,
       });
     } else {
       setFormData({
         name: '',
-        description: '',
+        // description: '',
       });
     }
   }, [category, isOpen]);
@@ -76,6 +76,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
             />
           </div>
 
+          {/* 
           <div className="category-modal-field">
             <label htmlFor="description" className="category-modal-label">
               Description
@@ -89,6 +90,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({
               placeholder="Enter category description"
             />
           </div>
+          */}
 
           <div className="category-modal-actions">
             <button

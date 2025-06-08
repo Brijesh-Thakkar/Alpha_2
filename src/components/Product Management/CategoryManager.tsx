@@ -25,7 +25,7 @@ export const CategoryManager: React.FC<CategoryManagerProps> = ({
   const [editingCategory, setEditingCategory] = useState<Category | undefined>();
 
   const handleCreateCategory = (data: CategoryFormData) => {
-    const newCategory = createCategory(data.name, data.description);
+    const newCategory = createCategory(data.name);
     onUpdateCategories([...categories, newCategory]);
   };
 
