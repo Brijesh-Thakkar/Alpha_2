@@ -32,6 +32,7 @@
 /* Form Section */
 .form-section {
   background: white;
+  max-height: 500px;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -52,6 +53,8 @@
 }
 
 .customer-form {
+  overflow-y: auto;
+  flex-grow: 1;
   padding: 2rem;
 }
 
@@ -144,8 +147,9 @@
 .customers-section {
   background: white;
   border-radius: 12px;
+  max-height: 500px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .customers-header {

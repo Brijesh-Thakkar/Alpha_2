@@ -9,7 +9,12 @@ const MessageAll: React.FC<MessageAllProps> = ({ totalCustomers = 0 }) => {
   const [message, setMessage] = useState<string>('');
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.target.value);
+    const input = e.target.value;
+    if (input.length <= 500) {
+      setMessage(input);
+    } else {
+      setMessage(input.slice(0, 500));
+    }
   };
 
   const handleSendMessage = () => {
@@ -58,7 +63,9 @@ const MessageAll: React.FC<MessageAllProps> = ({ totalCustomers = 0 }) => {
                   onChange={handleMessageChange}
                   rows={8}
                 />
-                <div className="character-count">{message.length}/500 characters</div>
+                <div className="character-count">
+                  {message.length}/500 characters
+                </div>
               </div>
 
               <div className="send-options">

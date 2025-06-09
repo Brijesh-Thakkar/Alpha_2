@@ -32,29 +32,38 @@ const CustomerPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.phone.trim()) {
+    const trimmedName = formData.name.trim();
+    const trimmedPhone = formData.phone.trim();
+
+    if (!trimmedName || !trimmedPhone) {
       alert('Please fill in all fields');
       return;
     }
 
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(trimmedPhone)) {
+      alert('Phone number must be exactly 10 digits');
+      return;
+    }
+
     if (editingId) {
-      // Update existing customer
-      setCustomers(prev => prev.map(customer => 
-        customer.id === editingId 
-          ? { ...customer, ...formData }
-          : customer
-      ));
+      setCustomers(prev =>
+        prev.map(customer =>
+          customer.id === editingId
+            ? { ...customer, name: trimmedName, phone: trimmedPhone }
+            : customer
+        )
+      );
       setEditingId(null);
     } else {
-      // Add new customer
       const newCustomer: Customer = {
         id: Date.now(),
-        ...formData
+        name: trimmedName,
+        phone: trimmedPhone
       };
       setCustomers(prev => [...prev, newCustomer]);
     }
 
-    // Reset form
     setFormData({ name: '', phone: '' });
   };
 
@@ -79,13 +88,11 @@ const CustomerPage: React.FC = () => {
 
   return (
     <div className="customer-page">
-      {/* Header */}
       <div className="header">
         <h1 className="dashboard-title">Customer details</h1>
       </div>
 
       <div className="main-content">
-        {/* Left Side - Add Customer Form */}
         <div className="form-section">
           <div className="form-header">
             <h2>{editingId ? 'EDIT CUSTOMER' : 'ADD CUSTOMER'}</h2>
@@ -105,6 +112,7 @@ const CustomerPage: React.FC = () => {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter customer name"
+                required
               />
             </div>
 
@@ -121,6 +129,10 @@ const CustomerPage: React.FC = () => {
                 onChange={handleInputChange}
                 className="form-input"
                 placeholder="Enter phone number"
+                pattern="[0-9]{10}"
+                maxLength={10}
+                inputMode="numeric"
+                required
               />
             </div>
 
@@ -137,7 +149,6 @@ const CustomerPage: React.FC = () => {
           </form>
         </div>
 
-        {/* Right Side - Customer List */}
         <div className="customers-section">
           <div className="customers-header">
             <h2>YOUR CUSTOMERS</h2>
