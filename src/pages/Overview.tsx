@@ -28,7 +28,7 @@ const Overview: React.FC = () => {
               The business owner signs up on the app by adding their business details, address, and login credentials.
             </p>
           </div>
-          <div className="card-illustration">
+          {/* <div className="card-illustration">
             <div className="laptop-icon">
               <div className="laptop-screen">
                 <div className="grid-pattern">
@@ -45,6 +45,9 @@ const Overview: React.FC = () => {
             <div className="cloud-icon">
               <div className="cloud-shape"></div>
             </div>
+          </div> */}
+          <div className='image-wrapper-top-left'>
+            <img src={Top_left_Image} className='top-left-image'></img>
           </div>
         </div>
 
@@ -56,7 +59,7 @@ const Overview: React.FC = () => {
               hey upload product images, add names, descriptions, categories, and prices to showcase their offerings.
             </p>
           </div>
-          <div className="card-illustration">
+          {/* <div className="card-illustration">
             <div className="person-with-board">
               <div className="person">
                 <div className="person-head"></div>
@@ -70,6 +73,9 @@ const Overview: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div> */}
+          <div className='image-wrapper-top-right'>
+            <img src={Top_Right_Image} className='top-right-image'></img>
           </div>
         </div>
       </div>
@@ -104,7 +110,7 @@ const Overview: React.FC = () => {
               Using built-in messaging, the owner sends customized promotional or reminder messages to a grouped customers
             </p>
           </div>
-          <div className="card-illustration">
+          {/* <div className="card-illustration">
             <div className="messaging-scene">
               <div className="person-messaging">
                 <div className="person-head"></div>
@@ -119,6 +125,9 @@ const Overview: React.FC = () => {
                 <div className="message-bubble"></div>
               </div>
             </div>
+          </div> */}
+          <div className='image-wrapper-bottom-right'>
+            <img src={Bottom_Right_Image} className='bottom-right-image'></img>
           </div>
         </div>
       </div>

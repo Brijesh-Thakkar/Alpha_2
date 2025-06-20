@@ -241,6 +241,14 @@ body {
   .image-wrapper {
     order: -1;
     max-width: 400px;
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .main-image {
+    width: 100%;
+    max-width: 400px;
+    margin-left: 0;
   }
 
   .content-wrapper {
@@ -271,10 +279,69 @@ body {
 
   .image-wrapper {
     order: -1;
-    max-width: 300px;
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    justify-content: center;
   }
 
   .main-image {
+    width: 100%;
     max-width: 100%;
+    margin-left: 0;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+  .header {
+    padding: 0.75rem;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+  .header-buttons {
+    gap: 0.5rem;
+  }
+
+  .header-login-button,
+  .header-signup-button {
+    padding: 0.4rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .main-content {
+    padding: 1.5rem 0.75rem 0;
+    gap: 1.5rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+  }
+
+  .description p {
+    font-size: 1rem;
+  }
+
+  .image-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .main-image {
+    border-radius: 0.375rem;
+  }
+
+  .login-button,
+  .lets-begin {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
