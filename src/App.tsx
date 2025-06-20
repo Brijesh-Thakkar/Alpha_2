@@ -11,6 +11,7 @@ import Landing from './pages/Landing';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SingupPage';
 import FirstPage from './pages/FirstPage';
+import Price from './pages/Price';
 function App() {
   return (
     <Router>
@@ -25,7 +26,7 @@ function App() {
         <Route path='/Login' element={<LoginPage />} />
         <Route path='/Signup' element={<SignupPage />} />
         <Route path='/' element={<FirstPage />} />
-        {/* <Route path='/#about' element= { */}
+        <Route path='/Price' element={<Price />} />
           
         
         <Route path="/Dashboard" element={
