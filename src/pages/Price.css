@@ -51,9 +51,12 @@
 }
 
 .key-features-header {
+  flex: 0.55;
+  margin-top: 30px;
     padding-top: 40px;
   background: #22c55e;
   color: #2d5a3d;
+  height: 100px;
 }
 
 .monthly-header {
@@ -104,7 +107,14 @@
 }
 
 .key-features-content {
+  flex: 0.6;
   background: #22c55e;
+}
+
+.key-features-content .feature-row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 12px; /* Slightly smaller font */
 }
 
 .monthly-content {
@@ -139,7 +149,7 @@
 
 /* Content rows for plan columns */
 .content-row {
-  padding: 20px 20px;
+  padding: 20px 20px ;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
